@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="ajax.js">
+
+    </script>
+</head>
+<body>
+    <%- include("home.ejs")%>
+    <br><br>
+
+    <div class="container p-5 bg-dark">
+        <input type="text" name="name" value="" class="from-control" onkeyup="searchDept(this.value)"/>
+
+
+    </div>
+    <div class="container p-5 bg-dark">
+    <table class="table table-dark p-5">
+        <tr>
+            <th>SR NO </th>
+            <th>DEPT NAME</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+        <tbody id="tblbody">
+         <%
+        if(deptList.length!=0)
+        {
+        deptList.forEach((row,index)=>{
+        %>
+            <tr>
+                <td><%=index+1%></td>
+                <td><%=row.deptname%></td>
+                <td><a href="/deldept?did=<%=row.deptid%>">DELETE</a></td>
+                <td><a href="/upddate?dn=<%=row.deptname%>&did=<%=row.deptid%>">UPDATE</a></td>
+
+            </tr>
+        <%
+        });
+        }
+        else
+        {
+            %>
+            <tr><td colspan="4">no data found in dept table</td></tr>
+            <%
+        }
+       %>
+       </tbody>
+
+    </table>
+    </div>
+</body>
+</html>
