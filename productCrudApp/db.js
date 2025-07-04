@@ -1,0 +1,44 @@
+require("dotenv").config();
+
+let mysql=require("mysql2");
+
+let conn=mysql.createConnection({
+    host:process.env.db_host,
+user:process.env.db_username,
+password:process.env.db_password,
+database:process.env.db_dbname
+
+});
+
+conn.connect((err)=>{
+    if(err)
+    {
+        console.log("database is not connected ");
+
+    }
+    else{
+        console.log("database is connected");
+
+    }
+});
+module.exports=conn;
+
+
+
+
+
+
+//for delete 
+
+// db.js or service.js
+function deleteProductById(id) {
+  return new Promise((resolve, reject) => {
+    connection.query("DELETE FROM products WHERE id = ?", [id], function (err, result) {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+}
+
+
+

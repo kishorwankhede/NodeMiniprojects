@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Update Product</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #30353b;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      margin-top: 80px;
+      max-width: 600px;
+    }
+
+    .card {
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      background-color: #007bff;
+      color: rgb(10, 9, 9);
+      border-radius: 16px 16px 0 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .form-group label {
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      border-radius: 25px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Include Navbar -->
+  <%- include("home.ejs") %>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        ✏️ Update Product
+      </div>
+      <div class="card-body">
+        <form action="/UpdateProd" method="post">
+          <input type="hidden" name="id" value="<%= id %>" />
+
+          <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" name="productname" class="form-control" value="<%=productname%>" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" name="category" class="form-control" value="<%= category %>" required>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price (₹)</label>
+            <input type="number" name="price" class="form-control" value="<%= price %>" required min="0" step="0.01">
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" class="form-control" value="<%= quantity %>" required min="0">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Update Product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
